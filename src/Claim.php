@@ -13,17 +13,22 @@ use DateTimeZone;
 class Claim
 {
     private string $targetPath;
-    private ?array $body = [];
+    private $body;
     private ?DateTime $requestDate;
 
-    public function __construct(string $targetPath, ?array $body = [], ?DateTime $requestDate = null)
+    public function __construct(string $targetPath, $body, ?DateTime $requestDate = null)
     {
         $this->targetPath = $targetPath;
-        $this->body = $body;
         $this->requestDate = $requestDate;
 
         if (null === $this->requestDate) {
             $this->makeRequestDate();
+        }
+
+        if (is_array($body)) {
+            $this->body = json_encode($body);
+        } else {
+            $this->body = $body;
         }
     }
 
