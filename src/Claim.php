@@ -14,38 +14,22 @@ class Claim
 {
     private string $targetPath;
     private ?array $body = [];
-    private ?string $requestId;
     private ?DateTime $requestDate;
 
-    public function __construct(string $targetPath, ?array $body = [], ?string $requestId = null, ?DateTime $requestDate = null)
+    public function __construct(string $targetPath, ?array $body = [], ?DateTime $requestDate = null)
     {
         $this->targetPath = $targetPath;
         $this->body = $body;
-        $this->requestId = $requestId;
         $this->requestDate = $requestDate;
-
-        if (null === $this->requestId) {
-            $this->makeRequestId();
-        }
 
         if (null === $this->requestDate) {
             $this->makeRequestDate();
         }
     }
 
-    public function makeRequestId(): void
-    {
-        $this->requestId = (string) Str::uuid();
-    }
-
     public function makeRequestDate(): void
     {
         $this->requestDate = new DateTime('now', new DateTimeZone('UTC'));
-    }
-
-    public function setRequestId(string $requestId): void
-    {
-        $this->requestId = $requestId;
     }
 
     public function setRequestDate(DateTime $requestDate): void
@@ -56,11 +40,6 @@ class Claim
     public function getTargetPath(): string
     {
         return $this->targetPath;
-    }
-
-    public function getRequestId(): string
-    {
-        return $this->requestId;
     }
 
     public function getRequestDate(): DateTime
@@ -97,7 +76,6 @@ class Claim
     public function toArray(): array
     {
         return [
-            $this->getRequestId(),
             $this->getRequestDateString(),
             $this->getTargetPath(),
             $this->getDigest(),

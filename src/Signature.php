@@ -29,7 +29,6 @@ class Signature
     {
         return [
             'Client-Id'         => $this->clientId,
-            'Request-Id'        => $this->claim->getRequestId(),
             'Request-Timestamp' => $this->claim->getRequestDateString(),
             'Signature'         => 'HMACSHA256='.$this->token,
         ];
