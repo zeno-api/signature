@@ -1,0 +1,26 @@
+{
+    "name": "zeno/signature",
+    "description": "Zeno signature component",
+    "license": "MIT",
+    "type": "library",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Iqbal Maulana",
+            "email": "iq.bluejack@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zeno\\Signature\\": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
