@@ -59,23 +59,18 @@ class Claim
         return substr($date, 0, strpos($date, '+')) . 'Z';
     }
 
-    public function getBody(): ?array
+    public function getBody(): ?string
     {
         return $this->body;
     }
 
-    public function getBodyString(): ?string
-    {
-        return null !== $this->body ? json_encode($this->body) : null;
-    }
-
     public function getDigest(): ?string
     {
-        if (null === $this->getBodyString()) {
+        if (null === $this->getBody()) {
             return null;
         }
 
-        return base64_encode(hash('sha256', $this->getBodyString(), true));
+        return base64_encode(hash('sha256', $this->getBody(), true));
     }
 
     public function toArray(): array
