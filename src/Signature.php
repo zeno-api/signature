@@ -9,9 +9,9 @@ namespace Zeno\Signature;
  */
 class Signature
 {
-    private string $token;
-    private string $clientId;
-    private Claim $claim;
+    protected string $token;
+    protected string $clientId;
+    protected Claim $claim;
 
     public function __construct(string $token, string $clientId, Claim $claim)
     {
